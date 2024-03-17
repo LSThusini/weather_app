@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/additional_info_item.dart';
 import 'package:weather_app/hourly_forecast_item.dart';
-import 'package:http/http.dart' as http;
+import 'package:weather_app/next_days_screen.dart';
 import 'package:weather_app/secrets.dart';
 
 //New comment
@@ -19,25 +18,6 @@ class WeatherScreen extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherScreen> {
   String cityName = 'Durban';
   late Future<Map<String, dynamic>> weather;
-  Future<Map<String, dynamic>> getCurrenttWeather() async {
-    try {
-      final res = await http.get(
-        Uri.parse(
-            'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$openWeatherApikey'),
-      );
-
-      final data = json.decode(res.body);
-
-      if (data['cod'] != '200') {
-        throw 'Unexpected error occured';
-      }
-
-      return data;
-      //data['list'][0]['main']['temp'];
-    } catch (e) {
-      throw e.toString();
-    }
-  }
 
   @override
   void initState() {
@@ -70,75 +50,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              padding: const EdgeInsets.fromLTRB(16, 6, 16, 8),
-              child: Column(
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Icon(Icons.settings),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            size: 32,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Favourite location",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Icon(Icons.info_outline_rounded),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Icon(
-                            Icons.location_on_outlined,
-                            size: 20,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            cityName,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            drawerHeader(),
             ListTile(
               title: const Row(
                 children: [
@@ -244,7 +156,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   height: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const NextDays();
+                        },
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     backgroundColor:
@@ -356,6 +276,78 @@ class _WeatherScreenState extends State<WeatherScreen> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  DrawerHeader drawerHeader() {
+    return DrawerHeader(
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 8),
+      child: Column(
+        children: [
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(Icons.settings),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.star,
+                    size: 32,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Favourite location",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              Icon(Icons.info_outline_rounded),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Icon(
+                    Icons.location_on_outlined,
+                    size: 20,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    cityName,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
