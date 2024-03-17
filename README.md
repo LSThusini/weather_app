@@ -9,7 +9,8 @@ A Flutter-based mobile application designed to provide users with accurate weath
 - Detailed weather information including temperature, humidity, wind speed, and conditions
 
 ## Screenshots
-![Screenshot](assets\images\Screenshot_1710539588.png)
+![Screenshot_1710682722](https://github.com/LSThusini/weather_app/assets/112751372/26c492cb-955d-4e02-ae8b-9a793f2722fc)
+
 
 ## Credits
 Weather data provided by [OpenWeatherMap](https://openweathermap.org/).
