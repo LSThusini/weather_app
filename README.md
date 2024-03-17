@@ -1,7 +1,7 @@
 # WeatherApp
 
 ## Description
-A Flutter-based mobile application designed to provide users with accurate weather forecasts for their current location as well as any location worldwide. 
+A Flutter-based mobile application designed to provide users with accurate weather forecasts for their current location. 
 
 ## Features
 - Current weather conditions display
