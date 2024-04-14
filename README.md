@@ -7,14 +7,6 @@ A Flutter-based mobile application designed to provide users with accurate weath
 
 ## Features
 - Current weather conditions display
-1. The user selects add check-points
-2. The system generates and displays the form to add.
-3. The user enters check-point's details.
-4. The user submits the check-point
-5. The system validates the input.
-6. The system adds the check-point.
-7. The system displays a success message.
-8. The use case ends.
 - Hourly and daily weather forecasts
 - Detailed weather information including temperature, humidity, wind speed, and conditions
 
