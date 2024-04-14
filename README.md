@@ -7,6 +7,7 @@ A Flutter-based mobile application designed to provide users with accurate weath
 - Current weather conditions display
 - Hourly and daily weather forecasts
 - Detailed weather information including temperature, humidity, wind speed, and conditions
+- That
 
 ## Screenshots
 ![Screenshot](assets\images\Screenshot_1710539588.png)
