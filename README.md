@@ -2,6 +2,16 @@
 
 ## Description
 A Flutter-based mobile application designed to provide users with accurate weather forecasts for their current location. 
+### Main-flow:
+1. The manager selects view reports.
+2. The system retrieves projects.
+3. The system displays projects.
+4. The manager selects a project.
+5. The system generates reports.
+6. The system displays reports.
+7. The manager chooses to print reports.
+8. The system generates a pdf of reports.
+9. The use case ends.
 
 ## Features
 - Current weather conditions display
